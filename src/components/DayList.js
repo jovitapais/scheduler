@@ -4,25 +4,19 @@ import DayListItem from 'components/DayListItem';
 // DayList renders a list of DayListItem components
 export default function DayList(props) {
 
+  const { days, value, onChange } = props;
 
-
-  const schedule = props.days.map(dayObj => {
+  const dayListItems = days.map(d => {
  
     return (
       <DayListItem
-        key={dayObj.id}
-        name={dayObj.name}
-        spots={dayObj.spots}
-        selected={dayObj.name === props.value}
-        setDay={props.onChange}
-        // {...dayObj}
-      />
+        key={d.id}
+        name={d.name}
+        spots={d.spots}
+        selected={d.name === value}
+        setDay={onChange}
+       />
     )
   })
-  return <ul>{schedule}</ul>
+  return <ul>{dayListItems}</ul>
 }
-
-// The DayList Component Props: 
-// days:Array a list of day objects (each object includes an id, name, and spots)
-// day:String the currently selected day
-// setDay:Function accepts the name of the day eg. "Monday", "Tuesday"
