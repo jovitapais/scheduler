@@ -1,4 +1,4 @@
-export default function getAppointmentsForDay (state, day) {
+export function getAppointmentsForDay (state, day) {
   
   const appointments = [];
 
