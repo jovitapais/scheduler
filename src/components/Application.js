@@ -6,7 +6,7 @@ import Appointment from "./Appointment";
 
 import axios from 'axios';
 
-import  {getAppointmentsForDay, getInterview } from 'helpers/selectors.js';
+import  {getAppointmentsForDay, getInterviewersForDay, getInterview } from 'helpers/selectors.js';
 
 export default function Application(props) {
 
@@ -17,7 +17,9 @@ export default function Application(props) {
     interviewers: {}
   });
 
-  const setDay = day => setState({...state, day});
+  const setDay = day => setState(prev => {
+    return { ...prev, day }
+  });
   
   useEffect(() => {
    
@@ -36,12 +38,16 @@ export default function Application(props) {
     })
   },[]);
 
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const appointmentsInSchedule = dailyAppointments.map(a => {
     const interview = getInterview(state, a.interview);
 
-    return <Appointment key={a.id} id={a.id} time={a.time} interview={interview} />
+    return <Appointment 
+    key={a.id} id={a.id} time={a.time} interview={interview} 
+    interviewers={dailyInterviewers}
+    />
   });
 
   appointmentsInSchedule.push(<Appointment key="last" time="5pm" />)
