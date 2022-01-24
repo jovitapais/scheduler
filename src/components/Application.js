@@ -38,6 +38,48 @@ export default function Application(props) {
     })
   },[]);
 
+  function bookInterview(id, interview) {
+    
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios
+      .put(`/api/appointments/${id}`, { interview })
+      .then(() => {
+        setState(prev => {
+          return { ...prev, appointments };
+        })
+      });
+  }
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios
+      .delete(`/api/appointments/${id}`)
+      .then(() => {
+        setState(prev => {
+          return { ...prev, appointments };
+        })
+      });
+  }
+
+
+    
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
@@ -45,8 +87,11 @@ export default function Application(props) {
     const interview = getInterview(state, a.interview);
 
     return <Appointment 
-    key={a.id} id={a.id} time={a.time} interview={interview} 
-    interviewers={dailyInterviewers}
+    key={a.id} id={a.id} time={a.time} 
+    interview={interview} 
+    interviewers={dailyInterviewers} 
+    bookInterview={bookInterview}
+    cancelInterview={cancelInterview}
     />
   });
 
@@ -64,8 +109,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
         <DayList
-          days = {state.days}
           value =  {state.day}  //  day
+          days = {state.days}
           onChange = {setDay}  //  setDay
           />
         </nav>

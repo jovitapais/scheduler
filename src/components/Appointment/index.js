@@ -4,6 +4,7 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+import Status from './Status';
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -12,10 +13,41 @@ import 'components/Appointment/styles.scss';
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
+const DELETING = "DELETING"
 
 
 export default function Appointment(props) {
-  const {time, interview } = props;
+  const {id, time, interview, interviewers, bookInterview, cancelInterview } = props;
+  
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    transition(SAVING);
+
+    bookInterview(id, interview)
+    .then(() => {
+      transition(SHOW);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
+  function onDelete() {
+    transition(DELETING);
+
+    cancelInterview(id)
+      .then(() => {
+        transition(EMPTY);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
   const getAppointment = (time) => {
     if (time) {
@@ -34,11 +66,13 @@ export default function Appointment(props) {
       {getAppointment(time)}
 
       {mode === EMPTY && <Empty onAdd={() => { transition(CREATE) }} />}
-      {mode === CREATE && <Form interviewers={[]} onCancel={() => back(EMPTY)} />}
+      {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back(EMPTY)} save={save} />}
+      {mode === SAVING && <Status message={"Saving"}/>}
       {mode === SHOW && (
         <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
+          student={interview.student}
+          interviewer={interview.interviewer}
+          onDelete={onDelete}
         />
       )}
     </article>

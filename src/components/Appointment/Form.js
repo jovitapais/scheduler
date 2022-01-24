@@ -8,6 +8,9 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  const { interviewers, onCancel, save } = props;
+
+
   const updateStudent = (value) => {
     setStudent(value);
   }
@@ -21,7 +24,7 @@ export default function Form(props) {
   const cancel = function () {
     // props.onCancel;
     reset();
-    props.onCancel()
+    onCancel()
     
   }
 
@@ -39,7 +42,7 @@ export default function Form(props) {
          />
       </form>
       <InterviewerList
-          interviewers={props.interviewers}
+          interviewers={interviewers}
           value={interviewer}
           onChange={setInterviewer}
         />
@@ -47,7 +50,7 @@ export default function Form(props) {
     <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={() => cancel()} danger>Cancel</Button>
-          <Button onClick={() => props.onSave(student, interviewer)} confirm>Save
+          <Button onClick={() => save(student, interviewer)} confirm>Save
           </Button>
         </section>
       </section>
