@@ -44,8 +44,36 @@ export default function useApplicationData() {
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then(() => {
+          const currentDays = [...state.days];
+  
+          let dayToUpdateSpots;
+  
+          if (id >= 1 && id <= 5) {
+            dayToUpdateSpots = 0;
+          }
+  
+          if (id >= 6 && id <= 10) {
+            dayToUpdateSpots = 1;
+          }
+  
+          if (id >= 11 && id <= 15) {
+            dayToUpdateSpots = 2;
+          }
+  
+          if (id >= 16 && id <= 20) {
+            dayToUpdateSpots = 3;
+          }
+  
+          if (id >= 21 && id <= 25) {
+            dayToUpdateSpots = 4;
+          }
+  
+          if (state.appointments[id].interview === null) {
+            currentDays[dayToUpdateSpots].spots--;
+          }
+  
         setState(prev => {
-          return { ...prev, appointments };
+          return { ...prev, currentDays, appointments };
         });
       });
   }
@@ -64,8 +92,34 @@ export default function useApplicationData() {
     return axios
       .delete(`/api/appointments/${id}`)
       .then(() => {
+        const currentDays = [...state.days];
+
+        let dayToUpdateSpots;
+
+        if (id >= 1 && id <= 5) {
+          dayToUpdateSpots = 0;
+        }
+
+        if (id >= 6 && id <= 10) {
+          dayToUpdateSpots = 1;
+        }
+
+        if (id >= 11 && id <= 15) {
+          dayToUpdateSpots = 2;
+        }
+
+        if (id >= 16 && id <= 20) {
+          dayToUpdateSpots = 3;
+        }
+
+        if (id >= 21 && id <= 25) {
+          dayToUpdateSpots = 4;
+        }
+
+        currentDays[dayToUpdateSpots].spots++;
+
         setState(prev => {
-          return { ...prev, appointments };
+          return { ...prev, currentDays, appointments };
         })
       });
   }

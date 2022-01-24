@@ -27,11 +27,16 @@ const ERROR_DELETE = "ERROR_DELETE";
 export default function Appointment(props) {
   const {id, time, interview, interviewers, bookInterview, cancelInterview } = props;
   
+  const { mode, transition, back } = useVisualMode(
+    interview ? SHOW : EMPTY
+    );
+
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
+    
 
     transition(SAVING);
 
@@ -73,9 +78,7 @@ export default function Appointment(props) {
     return 'No Appointments';
   };
 
-  const { mode, transition, back } = useVisualMode(
-    interview ? SHOW : EMPTY
-    );
+
 
   return (
     <article className="appointment">
@@ -89,7 +92,7 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE && <Error message={"Could not book appointment."} onClose={() => back()} />}
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === ERROR_DELETE && <Error message={"Could not cancel appointment."} onClose={() => back()} />}
-      {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} destroy={destroy} />}
+      {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} destroy={destroy} onCancel={() => back(EMPTY)}/>}
 
       {mode === SHOW && (
         <Show
