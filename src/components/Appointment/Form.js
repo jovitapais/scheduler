@@ -10,7 +10,7 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
-  const { interviewers, onCancel, save } = props;
+  const { interviewers, onCancel, onSave } = props;
 
 
   function validate() {
@@ -19,7 +19,7 @@ export default function Form(props) {
       return;
     }
     setError("");
-    save(student, interviewer);
+    onSave(student, interviewer);
   }
 
   const updateStudent = (value) => {
@@ -33,7 +33,6 @@ export default function Form(props) {
   };
 
   const cancel = function () {
-    // props.onCancel;
     reset();
     onCancel()
     
