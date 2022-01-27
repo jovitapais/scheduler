@@ -28,11 +28,15 @@ npm run cypress
 
 !["Interview Scheduler GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
 
-!["Home"] (https://github.com/jovitapais/scheduler/blob/master/docs/Home.png)
+
+!["Home"](https://github.com/jovitapais/scheduler/blob/master/docs/Home.png)
+
 
 !["Student Name input"](https://github.com/jovitapais/scheduler/blob/master/docs/Student_name.png)
 
+
 !["Deleting Confirmation"](https://github.com/jovitapais/scheduler/blob/master/docs/deleting_confirmation.png)
+
 
 !["Error_Delete GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Error_Delete.gif)
 
