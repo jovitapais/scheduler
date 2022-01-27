@@ -4,9 +4,8 @@ Interview Scheduler is a Single-page React application for booking, editing, and
 
 ## Setup
 
+* Install scheduler-api by cloning https://github.com/jovitapais/scheduler-api into a separate directory and follow the README.md instructions to configure and run the API server.
 * Install dependencies with `npm install`.
-* Clone https://github.com/TommyMynnSon/scheduler-api into a separate     directory and follow the README.md instructions to configure 
-  and run the API server.  
 
 ## Running Webpack Development Server
 
@@ -20,10 +19,22 @@ npm test
 
 npm run storybook
 
+## Running Cypress Test
+
+npm install -g cypress
+npm run cypress
+
 ## Final App
 
-!["Interview Scheduler App"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+!["Home"] (https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
 
+!["Student Name input"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+
+!["Deleting Confirmation"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+
+!["Deleting Confirmation GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+
+!["Error_Delete GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
 
 ## Dependencies
 

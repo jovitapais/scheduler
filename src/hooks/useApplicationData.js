@@ -10,9 +10,8 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
-  const setDay = day => setState(prev => {
-    return { ...prev, day }
-  });
+  // setDay function is used to set the state inside the useState
+  const setDay = day => setState({ ...state, day });
 
   useEffect(() => {
     Promise.all([
@@ -30,6 +29,17 @@ export default function useApplicationData() {
       });
   }, []);
 
+   function findDay(day) {
+    const daysOfWeek = {
+      Monday: 0,
+      Tuesday: 1,
+      Wednesday: 2,
+      Thursday: 3,
+      Friday: 4
+    }
+    return daysOfWeek[day]
+  }
+
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -41,41 +51,34 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const dayOfWeek = findDay(state.day)
+      let day = {
+        ...state.days[dayOfWeek],
+        spots: state.days[dayOfWeek]
+      }
+  
+      if (!state.appointments[id].interview) {
+        day = {
+          ...state.days[dayOfWeek],
+          spots: state.days[dayOfWeek].spots - 1
+        } 
+      } else {
+        day = {
+          ...state.days[dayOfWeek],
+          spots: state.days[dayOfWeek].spots
+        } 
+      }
+  
+      let days = state.days
+      days[dayOfWeek] = day;
+
+
     return axios
-      .put(`/api/appointments/${id}`, { interview })
+      .put(`/api/appointments/${id}`, appointment)
       .then(() => {
-          const currentDays = [...state.days];
-  
-          let dayToUpdateSpots;
-  
-          if (id >= 1 && id <= 5) {
-            dayToUpdateSpots = 0;
-          }
-  
-          if (id >= 6 && id <= 10) {
-            dayToUpdateSpots = 1;
-          }
-  
-          if (id >= 11 && id <= 15) {
-            dayToUpdateSpots = 2;
-          }
-  
-          if (id >= 16 && id <= 20) {
-            dayToUpdateSpots = 3;
-          }
-  
-          if (id >= 21 && id <= 25) {
-            dayToUpdateSpots = 4;
-          }
-  
-          if (state.appointments[id].interview === null) {
-            currentDays[dayToUpdateSpots].spots--;
-          }
-  
-        setState(prev => {
-          return { ...prev, currentDays, appointments };
-        });
-      });
+          setState({...state, appointments, days});
+    })
+
   }
 
   function cancelInterview(id) {
@@ -89,39 +92,21 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios
-      .delete(`/api/appointments/${id}`)
-      .then(() => {
-        const currentDays = [...state.days];
+    const dayOfWeek = findDay(state.day)
 
-        let dayToUpdateSpots;
+    const day = {
+      ...state.days[dayOfWeek],
+      spots: state.days[dayOfWeek].spots + 1
+    }
 
-        if (id >= 1 && id <= 5) {
-          dayToUpdateSpots = 0;
-        }
+    let days = state.days
+    days[dayOfWeek] = day;
 
-        if (id >= 6 && id <= 10) {
-          dayToUpdateSpots = 1;
-        }
-
-        if (id >= 11 && id <= 15) {
-          dayToUpdateSpots = 2;
-        }
-
-        if (id >= 16 && id <= 20) {
-          dayToUpdateSpots = 3;
-        }
-
-        if (id >= 21 && id <= 25) {
-          dayToUpdateSpots = 4;
-        }
-
-        currentDays[dayToUpdateSpots].spots++;
-
-        setState(prev => {
-          return { ...prev, currentDays, appointments };
-        })
-      });
+    const url =`http://localhost:8001/api/appointments/${id}`;
+  
+    return axios.delete(url, appointment).then(()=>{
+      setState({...state, appointments, days });
+    });
   }
 
   return { state, setDay, bookInterview, cancelInterview };

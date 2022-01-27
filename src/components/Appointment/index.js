@@ -16,7 +16,7 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
-const DELETING = "DELETING"
+const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
@@ -37,16 +37,16 @@ export default function Appointment(props) {
       interviewer
     };
     
-
     transition(SAVING);
 
     bookInterview(id, interview)
     .then(() => {
+      
       transition(SHOW);
     })
     .catch(error => {
       transition(ERROR_SAVE, true);
-      console.error(error);
+      
     });
   }
 
@@ -67,7 +67,6 @@ export default function Appointment(props) {
       })
       .catch(error => {
         transition(ERROR_DELETE, true);
-        console.error(error);
       });
   }
 
@@ -77,9 +76,6 @@ export default function Appointment(props) {
     }
     return 'No Appointments';
   };
-
-
-
   return (
     <article className="appointment">
       {time ? <Header /> : <></>}
