@@ -20,8 +20,9 @@ npm test
 
 npm run storybook
 
+## Final App
 
-![Interview Scheduler App](https://github.com/jovitapais/scheduler/blob/master/doc/Interview%20Scheduler.gif)
+!["Interview Scheduler App"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
 
 
 ## Dependencies
