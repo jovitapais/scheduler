@@ -26,15 +26,15 @@ npm run cypress
 
 ## Final App
 
-!["Home"] (https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+!["Interview Scheduler GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
 
-!["Student Name input"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+!["Home"] (https://github.com/jovitapais/scheduler/blob/master/docs/Home.png)
 
-!["Deleting Confirmation"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+!["Student Name input"](https://github.com/jovitapais/scheduler/blob/master/docs/Student_name.png)
 
-!["Deleting Confirmation GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+!["Deleting Confirmation"](https://github.com/jovitapais/scheduler/blob/master/docs/deleting_confirmation.png)
 
-!["Error_Delete GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Interview%20Scheduler.gif)
+!["Error_Delete GIF"](https://github.com/jovitapais/scheduler/blob/master/docs/Error_Delete.gif)
 
 ## Dependencies
 
