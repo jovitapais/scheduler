@@ -32,7 +32,7 @@ export default function Application(props) {
     />
   });
 
-  appointmentsInSchedule.push(<Appointment key="last" time="5pm" />)
+  appointmentsInSchedule.push(<Appointment key="last" time={appointmentsInSchedule.length + "pm"} />)
 
 
      return (

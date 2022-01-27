@@ -1,23 +1,48 @@
 # Interview Scheduler
 
+Interview Scheduler is a Single-page React application for booking, editing, and cancelling student's interviews with the latest tools and techniques.
+
 ## Setup
 
-Install dependencies with `npm install`.
+* Install dependencies with `npm install`.
+* Clone https://github.com/TommyMynnSon/scheduler-api into a separate     directory and follow the README.md instructions to configure 
+  and run the API server.  
 
 ## Running Webpack Development Server
 
-```sh
 npm start
-```
 
 ## Running Jest Test Framework
 
-```sh
 npm test
-```
 
 ## Running Storybook Visual Testbed
 
-```sh
 npm run storybook
-```
+
+
+![Interview Scheduler App](doc/Interview Scheduler.gif)
+
+
+## Dependencies
+
+* Axios
+* Classnames
+* Normalize.css
+* React
+* React-dom
+* React-scripts
+* Babel/core
+* Storybook/addon-actions
+* Storybook/addon-backgrounds
+* Storybook/addon-links
+* Storybook/addons
+* Storybook/react
+* Testing-library/jest-dom
+* Testing-library/react
+* Testing-library/react-hooks
+* Babel-loader
+* Eslint-plugin-cypress
+* Node-sass
+* Prop-types
+* React-test-renderer

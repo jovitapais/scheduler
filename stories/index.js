@@ -21,10 +21,6 @@ import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
 import Form from "components/Appointment/Form";
 
-
-
-
-
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -146,20 +142,14 @@ storiesOf("InterviewerList", module)
             setInterviewer={action('setInterviewer')}
           />
         ))
-        // .add("Clickable", () => (
-        //   <InterviewerList
-        //     interviewers={interviewers}
-        //     setInterviewer={action("setInterviewer")}
-        //   />
-        // ));
-
+     
 
 storiesOf("Appointment", module)
         .addParameters({
           backgrounds: [{ name: "white", value: "#fff", default: true }]
         })
         .add("Appointment", () => <Appointment />)
-        //.add("Appointment with Time", () => <Appointment time="12pm" />)
+        .add("Appointment with Time", () => <Appointment time={"12pm"} />)
         .add('Appointment Empty', () => (
           <Fragment>
             <Appointment id={1} time="12pm" onAdd={action('onAdd')} />
