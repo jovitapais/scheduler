@@ -21,7 +21,7 @@ npm test
 npm run storybook
 
 
-![Interview Scheduler App](doc/Interview Scheduler.gif)
+![Interview Scheduler App](https://github.com/jovitapais/scheduler/blob/master/doc/Interview%20Scheduler.gif)
 
 
 ## Dependencies
