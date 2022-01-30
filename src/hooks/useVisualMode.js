@@ -1,9 +1,12 @@
 import { useState} from 'react';
 
+//this is the hook that helps us to 
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
   
+
+  //
   function transition(mode, replace) {
     setMode(() => {
       return mode;

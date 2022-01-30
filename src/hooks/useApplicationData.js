@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function useApplicationData() {
+
+  //Initial state
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -13,6 +15,7 @@ export default function useApplicationData() {
   // setDay function is used to set the state inside the useState
   const setDay = day => setState({ ...state, day });
 
+  //Fetch data from server
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -39,6 +42,8 @@ export default function useApplicationData() {
     }
     return daysOfWeek[day]
   }
+
+  //Make an appointment
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -81,6 +86,7 @@ export default function useApplicationData() {
 
   }
 
+//Cancel an appointment
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -102,7 +108,7 @@ export default function useApplicationData() {
     let days = state.days
     days[dayOfWeek] = day;
 
-    const url =`http://localhost:8001/api/appointments/${id}`;
+    const url =`/api/appointments/${id}`;
   
     return axios.delete(url, appointment).then(()=>{
       setState({...state, appointments, days });
