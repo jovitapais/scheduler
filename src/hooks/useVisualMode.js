@@ -6,18 +6,16 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
   
-
-  //
   function transition(mode, replace) {
     setMode(() => {
       return mode;
     })
   
   setHistory((prev) => {
-    const current = [...prev];
+    const current = [...prev]; // make a copy of the array to not affect the initial array
 
     if (replace) {
-      current.pop();
+      current.pop(); //.pop will pop the element of the copy of line 15 
     }
 
     current.push(mode);
@@ -30,7 +28,8 @@ function back() {
   if (history.length > 1) {
     setHistory((prev) => {
       const current = [...prev]; // make a copy of the array to not affect the initial array
-      current.pop();
+      
+      current.pop();  //.pop will pop the element of the copy of line 30
 
       return current;
     });
