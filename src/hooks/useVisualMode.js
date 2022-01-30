@@ -1,6 +1,7 @@
+// Hook for appointment modes transitions and record of their history.
 import { useState} from 'react';
 
-//this is the hook that helps us to 
+
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
@@ -28,7 +29,7 @@ export default function useVisualMode(initial) {
 function back() {
   if (history.length > 1) {
     setHistory((prev) => {
-      const current = [...prev];
+      const current = [...prev]; // make a copy of the array to not affect the initial array
       current.pop();
 
       return current;
